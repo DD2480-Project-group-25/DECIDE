@@ -8,6 +8,6 @@ public class MyTest {
      * @return a hello world message
      */
     static String messageProvider() {
-        return "Hej världen!";
+        return "Hello world!";
     }
 }

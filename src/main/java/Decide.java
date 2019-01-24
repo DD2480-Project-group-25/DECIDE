@@ -21,4 +21,26 @@ public class Decide {
     boolean decideLaunch() {
         return false;
     }
+
+    /**
+     * Checks distance between two points.
+     * @param pts array of Point objects
+     * @param params Parameter object
+     * @return true if two consecutive points are greater than length1 distance apart.
+     */
+    public static boolean LIC0(Point[] pts, Parameters params) {
+        if (params.length1 < 0)
+            throw new IllegalArgumentException("Length1 must be greater than or equal to 0");
+        Point a;
+        Point b;
+        for (int i = 0; i < pts.length; i++) {
+            if (i + 1 == pts.length)
+                return false;
+            a = pts[i];
+            b = pts[i + 1];
+            if (a.distance(b) > params.length1)
+                return true;
+        }
+        return false;
+    }
 }

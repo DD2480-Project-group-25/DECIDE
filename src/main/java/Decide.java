@@ -43,4 +43,46 @@ public class Decide {
         }
         return false;
     }
+
+    /**
+     * Checks distance between two points.
+     * @param pts array of Point objects
+     * @param params Parameter object that includes 
+     * q_pts, number of consecutive points, and QUADS, number of quadrants
+     * @return true if at least one set of Q_PTS consecutive data points lie in more than QUADS quadrants.
+     */
+    public static boolean LIC4(Point[] pts, Parameters params) {
+        int q_pts = params.q_pts;
+        int quads = params.quads;
+        if (q_pts < 2 || q_pts > pts.length){
+            throw new IllegalArgumentException("q_pts should be between 2 and pts.length");
+        }
+        if (quads < 1 || quads > 3){
+            throw new IllegalArgumentException("quads should be between 1 and 3");
+        }
+
+        for (int i = 0; i < pts.length - q_pts + 1; i++) {
+            boolean quadrants[] = {false, false, false, false};
+            for (int j = i; j < q_pts + i; j++) {
+                Point p = pts[j];
+                if (p.X >= 0 && p.Y >= 0) {
+                    quadrants[0] = true;
+                }else if (p.X < 0 && p.Y >= 0) {
+                    quadrants[1] = true;
+                }else if (p.X <= 0 && p.Y < 0) {
+                    quadrants[2] = true;
+                }else{
+                    quadrants[3] = true;
+                }
+            }
+            int numQuads = 0;
+            for (boolean b: quadrants) {
+                if (b)
+                    numQuads++;
+            }
+            if (numQuads > quads)
+                return true;
+        }
+        return false;
+    }
 }

@@ -8,6 +8,8 @@
  */
 public class Decide {
 
+    private boolean[] CMV = new boolean[15];
+
     /**
      * Decides if the "launch-unlock" signal will be generated.
      * The launch decision is made from the Final Unlocking Vector (FUV), where

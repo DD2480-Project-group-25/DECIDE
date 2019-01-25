@@ -93,6 +93,46 @@ public class Decide {
     }
 
     /**
+     * LIC2 - verifies that there exists at least one set of three consecutive
+     * data points which from an angle such that:
+     *      condition 1: angle < (PI - EPSILON)
+     *      condition 2: angle > (PI + EPSILON)
+     *
+     * The second of the three consecutive points is always the vertex of the
+     * angle. If either the first point or the last point (or both) coincides
+     * with the vertex, the angle is undefined and the LIC is not satisfied by
+     * those three points. (0 ≤ EPSILON < PI)
+     *
+     * Angle is calculated with "The Law of Cosines"
+     *
+     * @param params Parameter object, acts as configuration
+     * @param pts array filled with coordinates of type Points
+     * @return true if condition 1 OR 2 is true, otherwise false will be returned
+     */
+    public static boolean LIC2(Point[] pts, Parameters params) {
+        if (0 <= params.epsilon && params.epsilon < Math.PI) {/* Condition fulfilled */
+        } else {
+            throw new ArithmeticException("Condition: 0 ≤ EPSILON < PI, is not fulfilled. " +
+                    "Check configuration for EPSILON");
+        }
+
+        // Last check will be points[i-2], points[i-1
+        for (int i = 0; i < pts.length - 2; i++) {
+            double a = pts[i].distance(pts[i + 1]);       // dist p1->p2
+            double b = pts[i + 2].distance(pts[i + 1]);   // dist p3->p2
+            double c = pts[i].distance(pts[i + 2]);       // dist p1->p3
+
+            double angle = Math.acos((Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2))
+                    / (2 * a * b));
+
+            if (angle < (Math.PI - params.epsilon) || angle > (Math.PI + params.epsilon)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Checks distance between two points.
      * @param pts array of Point objects
      * @param params Parameter object that includes

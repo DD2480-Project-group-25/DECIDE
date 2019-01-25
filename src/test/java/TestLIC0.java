@@ -14,7 +14,7 @@ public class TestLIC0 {
         Point b = new Point(2, 2);
         Point c = new Point(10, 10);
         Point[] pts = {a, b, c};
-        Assert.assertEquals(Decide.LIC0(pts, params), true);
+        Assert.assertTrue(Decide.LIC0(pts, params));
     }
 
     @Test
@@ -27,8 +27,8 @@ public class TestLIC0 {
         Point b = new Point(2, 2);
         Point c = new Point(3, 3);
         Point[] pts = {a, b, c};
-        Assert.assertNotEquals(Decide.LIC0(pts, params), true);
-        Assert.assertEquals(Decide.LIC0(pts, params), false);
+        Assert.assertFalse(Decide.LIC0(pts, params));
+        Assert.assertFalse(Decide.LIC0(pts, params));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TestLIC0 {
                 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0);
         Point[] pts = {};
-        Assert.assertEquals(Decide.LIC0(pts, params), false);
+        Assert.assertFalse(Decide.LIC0(pts, params));
     }
 
     @Test
@@ -48,15 +48,15 @@ public class TestLIC0 {
         Point a = new Point(-3, -3);
         Point b = new Point(5, 4);
         Point[] pts1 = {a, b};
-        Assert.assertEquals(Decide.LIC0(pts1, params), true);
+        Assert.assertTrue(Decide.LIC0(pts1, params));
 
         Point c = new Point(-4, -4);
         Point[] pts2 = {a, c};
-        Assert.assertEquals(Decide.LIC0(pts2, params), false);
+        Assert.assertFalse(Decide.LIC0(pts2, params));
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testIllegalArgument() {
         Point a = new Point(1,1);
         Point b = new Point(10,10);
@@ -64,10 +64,6 @@ public class TestLIC0 {
         Parameters params = new Parameters(-1,0,0,0,
                 0, 0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0);
-        try {
-            Decide.LIC0(pts, params);
-        } catch (IllegalArgumentException ie) {
-            Assert.assertEquals(ie.getMessage(), "Length1 must be greater than or equal to 0");
-        }
+        Decide.LIC0(pts, params);
     }
 }

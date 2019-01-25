@@ -29,17 +29,17 @@ public class Decide {
      * @return true if two consecutive points are greater than length1 distance apart.
      */
     public static boolean LIC0(Point[] pts, Parameters params) {
-        if (params.length1 < 0)
+        if (params.length1 < 0) {
             throw new IllegalArgumentException("Length1 must be greater than or equal to 0");
+        }
         Point a;
         Point b;
-        for (int i = 0; i < pts.length; i++) {
-            if (i + 1 == pts.length)
-                return false;
+        for (int i = 0; i < pts.length - 1; i++) {
             a = pts[i];
             b = pts[i + 1];
-            if (a.distance(b) > params.length1)
+            if (a.distance(b) > params.length1) {
                 return true;
+            }
         }
         return false;
     }
@@ -60,7 +60,7 @@ public class Decide {
     /**
      * Checks distance between two points.
      * @param pts array of Point objects
-     * @param params Parameter object that includes 
+     * @param params Parameter object that includes
      * q_pts, number of consecutive points, and QUADS, number of quadrants
      * @return true if at least one set of Q_PTS consecutive data points lie in more than QUADS quadrants.
      */

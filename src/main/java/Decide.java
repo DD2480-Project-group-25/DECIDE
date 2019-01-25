@@ -79,6 +79,39 @@ public class Decide {
         return false;
     }
 
+    /**
+     * Checks that there are three consecutive points, separated by e_pts and f_pts points respectively,
+     * that forms a triangle with area greater than params.area1
+     * @param pts array of Point objects
+     * @param params Parameter object
+     * @return true if the condition above is met
+     */
+    public static boolean LIC10(Point[] pts, Parameters params) {
+        if (pts.length < 5) {
+            return false;
+        }
+        int e_pts = params.e_pts;
+        int f_pts = params.f_pts;
+        if (e_pts < 1 || f_pts < 1) {
+            throw new IllegalArgumentException("e_pts and f_pts must be greater than or equals to 1");
+        }
+        if ((e_pts + f_pts) > pts.length - 3) {
+            throw new IllegalArgumentException("Condition (e_pts + f_pts) <= (numpoints - 3) is not met.");
+        }
+        Point a, b, c;
+        double triangleArea;
+        for (int i = 0; i < pts.length - e_pts - f_pts - 2; i++) {
+            a = pts[i];
+            b = pts[i + e_pts + 1];
+            c = pts[i + e_pts + f_pts + 2];
+            triangleArea = (a.distance(b) * b.distance(c))/2;
+            if (triangleArea > params.area1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean LIC1(Point[] pts, Parameters params) {
         if (params.radius1 < 0)
             throw new IllegalArgumentException("Radius1 must be greater than or equal to 0");

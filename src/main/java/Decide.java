@@ -44,6 +44,19 @@ public class Decide {
         return false;
     }
 
+    public static boolean LIC1(Point[] pts, Parameters params) {
+        if (params.radius1 < 0)
+            throw new IllegalArgumentException("Radius1 must be greater than or equal to 0");
+
+        for (int i=0 ; i < pts.length-2; i++) {
+            for (int j=1 ; j<3; j++) {
+                if (pts[i].distance(pts[i+j]) > params.radius1)
+                    return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Checks distance between two points.
      * @param pts array of Point objects
@@ -86,3 +99,4 @@ public class Decide {
         return false;
     }
 }
+

@@ -44,6 +44,41 @@ public class Decide {
         return false;
     }
 
+    /**
+     * Checks that there exists at least one set of three data points separated 
+     * by exactly c_pts and d_pts consecutive intervening points, respectively, 
+     * that form an angle such that: angle < (PI − epsilon) or angle > (PI + epsilon)
+     * @param pts array of Point objects
+     * @param params Parameter object
+     * @return true if the condition, above, for the angle is met
+     */
+    public static boolean LIC9(Point[] pts, Parameters params) {
+        int c_pts = params.c_pts;
+        int d_pts = params.d_pts;
+        if (pts.length < 5) {
+            return false;
+        }
+        if (c_pts < 1 || d_pts < 1){
+            throw new IllegalArgumentException("c_pts and d_pts must be greater or equal to 1");
+        }
+        for (int i = 0; i < pts.length - c_pts - d_pts - 2; i++) {
+            Point x = pts[i];
+            Point v = pts[i + c_pts + 1];
+            Point y = pts[i + c_pts + d_pts + 2];
+            //check if x and v or y and v coincide
+            if (x.X == v.X && x.Y == v.Y || y.X == v.X && y.Y == v.Y) {
+                continue;
+            }
+            //calculate angle using law of cosine
+            double angle = Math.acos((Math.pow(x.distance(v),2) + Math.pow(y.distance(v),2) - Math.pow(x.distance(y),2))
+                /(2 * x.distance(v) * y.distance(v)));
+            if (angle < (Math.PI - params.epsilon) || angle > (Math.PI + params.epsilon)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean LIC1(Point[] pts, Parameters params) {
         if (params.radius1 < 0)
             throw new IllegalArgumentException("Radius1 must be greater than or equal to 0");
@@ -99,4 +134,3 @@ public class Decide {
         return false;
     }
 }
-

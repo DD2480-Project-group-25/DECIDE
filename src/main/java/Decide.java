@@ -45,8 +45,8 @@ public class Decide {
     }
 
     /**
-     * Checks that there exists at least one set of three data points separated 
-     * by exactly c_pts and d_pts consecutive intervening points, respectively, 
+     * Checks that there exists at least one set of three data points separated
+     * by exactly c_pts and d_pts consecutive intervening points, respectively,
      * that form an angle such that: angle < (PI − epsilon) or angle > (PI + epsilon)
      * @param pts array of Point objects
      * @param params Parameter object
@@ -171,6 +171,36 @@ public class Decide {
             if (numQuads > quads)
                 return true;
         }
+        return false;
+    }
+
+    /**
+     * Checks for LIC3 in the input parameters.
+     *
+     * LIC3 is true if the input contains three consecutive points that forms a
+     * triangle with an area larger than AREA1.
+     * @param pts array of Points objects
+     * @param params Parameter object
+     * @return true if LIC3 as described above is true, false otherwise.
+     */
+    public static boolean LIC3(Point[] pts, Parameters params) {
+        if(params.area1 < 0) {
+            throw new IllegalArgumentException("AREA1 must be greater or equal to 0");
+        }
+
+        for(int i = 0; i < pts.length - 2; i++) {
+            Point a = pts[i];
+            Point b = pts[i + 1];
+            Point c = pts[i + 2];
+
+            //According to https://www.mathopenref.com/coordtrianglearea.html
+            double area = Math.abs((a.X * (b.Y-c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y))/2.0);
+
+            if(params.area1 < area) {
+                return true;
+            }
+        }
+
         return false;
     }
 }

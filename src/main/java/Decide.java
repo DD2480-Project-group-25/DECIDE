@@ -166,6 +166,36 @@ public class Decide {
     }
 
     /**
+     * Checks for LIC3 in the input parameters.
+     *
+     * LIC3 is true if the input contains three consecutive points that forms a
+     * triangle with an area larger than AREA1.
+     * @param pts array of Points objects
+     * @param params Parameter object
+     * @return true if LIC3 as described above is true, false otherwise.
+     */
+    public static boolean LIC3(Point[] pts, Parameters params) {
+        if(params.area1 < 0) {
+            throw new IllegalArgumentException("AREA1 must be greater or equal to 0");
+        }
+
+        for(int i = 0; i < pts.length - 2; i++) {
+            Point a = pts[i];
+            Point b = pts[i + 1];
+            Point c = pts[i + 2];
+
+            //According to https://www.mathopenref.com/coordtrianglearea.html
+            double area = Math.abs((a.X * (b.Y-c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y))/2.0);
+
+            if(params.area1 < area) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Checks distance between two points.
      * @param pts array of Point objects
      * @param params Parameter object that includes
@@ -208,32 +238,33 @@ public class Decide {
     }
 
     /**
-     * Checks for LIC3 in the input parameters.
+     * Checks if there is two points, separated by K_pts consecutive intervening
+     * points, with a distance greater than LENGTH1 between each other.
      *
-     * LIC3 is true if the input contains three consecutive points that forms a
-     * triangle with an area larger than AREA1.
-     * @param pts array of Points objects
-     * @param params Parameter object
-     * @return true if LIC3 as described above is true, false otherwise.
+     * @param pts array of data points of type Point
+     * @param params Parameter object acting as configuration
+     * @return boolean which is true iff LIC7 condition is met
      */
-    public static boolean LIC3(Point[] pts, Parameters params) {
-        if(params.area1 < 0) {
-            throw new IllegalArgumentException("AREA1 must be greater or equal to 0");
+    public static boolean LIC7(Point[] pts, Parameters params) {
+        // NUMPOINTS needs to be at least 3
+        if (pts.length < 3) {
+            return false;
         }
 
-        for(int i = 0; i < pts.length - 2; i++) {
-            Point a = pts[i];
-            Point b = pts[i + 1];
-            Point c = pts[i + 2];
+        if (1 <= params.k_pts && params.k_pts <= pts.length - 2) { /* Condition fulfilled */
+        } else {
+            throw new IllegalArgumentException("K_pts needs to be greater or equal" +
+                    " to 1 and lower or equal to amount of data points - 2. Check LIC7");
+        }
 
-            //According to https://www.mathopenref.com/coordtrianglearea.html
-            double area = Math.abs((a.X * (b.Y-c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y))/2.0);
+        // Check distance between point p[i] and p[i + k_pts + 1]
+        for (int i = 0; i < pts.length - (params.k_pts + 1); i++) {
+            double dist = pts[i].distance(pts[i + params.k_pts + 1]);
 
-            if(params.area1 < area) {
+            if (dist > params.length1) {
                 return true;
             }
         }
-
         return false;
     }
 }

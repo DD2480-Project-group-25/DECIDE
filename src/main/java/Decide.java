@@ -104,7 +104,7 @@ public class Decide {
             a = pts[i];
             b = pts[i + e_pts + 1];
             c = pts[i + e_pts + f_pts + 2];
-            triangleArea = (a.distance(b) * b.distance(c))/2;
+            triangleArea = Point.triangleArea(a, b, c);
             if (triangleArea > params.area1) {
                 return true;
             }
@@ -184,9 +184,7 @@ public class Decide {
             Point b = pts[i + 1];
             Point c = pts[i + 2];
 
-            //According to https://www.mathopenref.com/coordtrianglearea.html
-            double area = Math.abs((a.X * (b.Y-c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y))/2.0);
-
+            double area = Point.triangleArea(a, b, c);
             if(params.area1 < area) {
                 return true;
             }

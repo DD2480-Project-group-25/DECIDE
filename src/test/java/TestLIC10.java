@@ -5,7 +5,7 @@ public class TestLIC10 {
 
     @Test
     public void testTriangle() {
-        Parameters params = new Parameters(0,0,0,0,0,2.99,
+        Parameters params1 = new Parameters(0,0,0,0,0,2.99,
                 0, 0,0,0,0,0,0,0,0,0,1,
                 2,0);
         Point a = new Point(0,0);
@@ -15,9 +15,18 @@ public class TestLIC10 {
         Point e = new Point(0,0);
         Point f = new Point(0,0);
         Point g = new Point(4,3);
-        // Check triangle with area 3
-        Point[] pts = {a, b, c, d, e, f, g};
-        Assert.assertTrue(Decide.LIC10(pts, params));
+        // Check right triangle with area 3
+        Point[] pts1 = {a, b, c, d, e, f, g};
+        Assert.assertTrue(Decide.LIC10(pts1, params1));
+
+        Parameters params2 = new Parameters(0,0,0,0,0,2.49,
+                0, 0,0,0,0,0,0,0,0,0,1,
+                2,0);
+        Point h = new Point(4, 2);
+        Point i = new Point(5, 4);
+        // Check oblique triangle with area 2.5
+        Point[] pts2 = {a, b, c, h, e, f, i, f};
+        Assert.assertTrue(Decide.LIC10(pts2, params2));
     }
 
     @Test
@@ -32,24 +41,24 @@ public class TestLIC10 {
         Point e = new Point(0,0);
         Point f = new Point(0,0);
         Point g = new Point(2,1);
-        // Check triangle with area 3
+        // Check right triangle with area 3
         Point[] pts = {a, b, c, d, e, f, g};
         Assert.assertTrue(Decide.LIC10(pts, params));
     }
 
     @Test
     public void testNoTriangle() {
-        Parameters params = new Parameters(0,0,0,0,0,3,
+        Parameters params = new Parameters(0,0,0,0,0,1.5,
                 0, 0,0,0,0,0,0,0,0,0,1,
                 2,0);
         Point a = new Point(0,0);
-        Point b = new Point(1,1);
+        Point b = new Point(2,1);
         Point c = new Point(0,0);
-        Point d = new Point(4,1);
+        Point d = new Point(4,2);
         Point e = new Point(0,0);
         Point f = new Point(0,0);
-        Point g = new Point(4,3);
-        // Check triangle with area 3
+        Point g = new Point(5,4);
+        // Check oblique triangle with area 1.5
         Point[] pts = {a, b, c, d, e, f, g};
         Assert.assertFalse(Decide.LIC10(pts, params));
 

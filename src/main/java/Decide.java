@@ -42,6 +42,10 @@ public class Decide {
      * value is set to false
      */
     boolean decideLaunch(Point[] pts, Parameters params) {
+        calculateCMV(pts, params);
+        boolean[][] pum = calculatePUM();
+        boolean[] fuv = calculateFUV(pum);
+        printOutput (pum, fuv);
         return false;
     }
 
@@ -49,14 +53,14 @@ public class Decide {
      * Calculates the CMV, Conditions Met Vector.
      * The fifteen elements of the CMV will be assigned boolean values true or false.
      * Each element of the CMV corresponds to one LIC’s condition.
-     TODO
+     */
     public void calculateCMV(Point[] pts, Parameters params){
         CMV[0] = LIC0(pts, params);
         CMV[1] = LIC1(pts, params);
         CMV[2] = LIC2(pts, params);
         CMV[3] = LIC3(pts, params);
         CMV[4] = LIC4(pts, params);
-        CMV[5] = LIC5(pts, params);
+        CMV[5] = LIC5(pts);
         CMV[6] = LIC6(pts, params);
         CMV[7] = LIC7(pts, params);
         CMV[8] = LIC8(pts, params);
@@ -67,7 +71,7 @@ public class Decide {
         CMV[13] = LIC13(pts, params);
         CMV[14] = LIC14(pts, params);
     }
-    */
+
     public static boolean[][] calculatePUM() {
         boolean[][] PUM = new boolean[15][15];
 
@@ -98,18 +102,22 @@ public class Decide {
 
         for (int i = 0; i < 15; i++) {
             if (!PUV[i]) {
-                FUV[i] = true; 
+                FUV[i] = true;
             }else if (PUV[i]) {
                 FUV[i] = true;
                 for (int j = 0; j < 15; j++) {
                     if (!pum[i][j]) {
                         FUV[i] = false;
-                        break; 
+                        break;
                     }
                 }
             }
         }
         return FUV;
+    }
+
+    public void printOutput (boolean[][] pum, boolean[] fuv){
+        // TODO
     }
 
     /**
@@ -327,7 +335,7 @@ public class Decide {
                     temp = (dxLine*dxLine)+(dyLine*dyLine);
                     u = ((c.X - a.X) * dxLine +
                             (c.Y - a.Y) * dyLine) / temp;
-                    
+
                     if (u > 1) {
                         u = 1;
                     }

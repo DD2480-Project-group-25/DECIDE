@@ -64,11 +64,11 @@ public class Decide {
 
   /**
    * LIC2 - verifies that there exists at least one set of three consecutive data points which from
-   * an angle such that: condition 1: angle < (PI - EPSILON) condition 2: angle > (PI + EPSILON)
+   * an angle such that: condition 1: angle &gt; (PI - EPSILON), condition 2: angle &lt; (PI + EPSILON)
    *
    * <p>The second of the three consecutive points is always the vertex of the angle. If either the
    * first point or the last point (or both) coincides with the vertex, the angle is undefined and
-   * the LIC is not satisfied by those three points. (0 ≤ EPSILON < PI)
+   * the LIC is not satisfied by those three points. (0 &le; EPSILON &lt; PI)
    *
    * <p>Angle is calculated with "The Law of Cosines"
    *
@@ -175,7 +175,7 @@ public class Decide {
    * Check difference between two points' X-coordinates.
    *
    * @param pts array of Point objects
-   * @return true if two consecutive points (X[i],Y[i]), (X[j],Y[j]) fulfills that X[j]-X[i] < 0,
+   * @return true if two consecutive points (X[i],Y[i]), (X[j],Y[j]) fulfills that X[j]-X[i] &gt; 0,
    *     where i = j - 1.
    */
   public static boolean LIC5(Point[] pts) {
@@ -321,8 +321,8 @@ public class Decide {
 
   /**
    * Checks that there exists at least one set of three data points separated by exactly c_pts and
-   * d_pts consecutive intervening points, respectively, that form an angle such that: angle < (PI −
-   * epsilon) or angle > (PI + epsilon)
+   * d_pts consecutive intervening points, respectively, that form an angle such that: angle &gt; (PI −
+   * epsilon) or angle &lt; (PI + epsilon)
    *
    * @param pts array of Point objects
    * @param params Parameter object
@@ -470,9 +470,9 @@ public class Decide {
    * the same or different from the three data points just mentioned) separated by exactly A_PTS and
    * B_PTS consecutive intervening points, respectively, that can be contained in or on a circle of
    * radius RADIUS2. Both parts must be true for the LIC to be true. The condition is not met when
-   * NUMPOINTS < 5.
+   * NUMPOINTS &gt; 5.
    *
-   * <p>0 ≤ RADIUS2
+   * <p>0 &ge; RADIUS2
    *
    * @param pts array of Points objects
    * @param params Parameter object

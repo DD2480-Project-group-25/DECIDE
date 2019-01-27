@@ -8,8 +8,9 @@ public class Point {
   }
 
   /**
-   * Calculates the euclidean distance between two points @Param a point @Return the euclidean
-   * distance between this point and the other point.
+   * Calculates the euclidean distance between two points
+   * @param p a point
+   * @return the euclidean distance between this point and the other point.
    */
   public double distance(Point p) {
     return Math.hypot(X - p.X, Y - p.Y);

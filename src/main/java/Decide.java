@@ -236,6 +236,25 @@ public class Decide {
     }
 
     /**
+     * Check difference between two points' X-coordinates.
+     * @param pts array of Point objects
+     * @return true if two consecutive points (X[i],Y[i]), (X[j],Y[j]) fulfills that X[j]-X[i] < 0,
+     * where i = j - 1.
+     */
+    public static boolean LIC5(Point[] pts) {
+        Point a;
+        Point b;
+        for (int i = 0; i < pts.length - 1; i++) {
+            a = pts[i];
+            b = pts[i + 1];
+            if ((b.X - a.X) < 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+     /*
      * Checks if there is two points, separated by K_pts consecutive intervening
      * points, with a distance greater than LENGTH1 between each other.
      *

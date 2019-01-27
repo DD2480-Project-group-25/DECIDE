@@ -9,6 +9,7 @@ public class Point {
 
   /**
    * Calculates the euclidean distance between two points
+   *
    * @param p a point
    * @return the euclidean distance between this point and the other point.
    */

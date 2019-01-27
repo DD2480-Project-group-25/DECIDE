@@ -64,7 +64,8 @@ public class Decide {
 
   /**
    * LIC2 - verifies that there exists at least one set of three consecutive data points which from
-   * an angle such that: condition 1: angle &gt; (PI - EPSILON), condition 2: angle &lt; (PI + EPSILON)
+   * an angle such that: condition 1: angle &gt; (PI - EPSILON), condition 2: angle &lt; (PI +
+   * EPSILON)
    *
    * <p>The second of the three consecutive points is always the vertex of the angle. If either the
    * first point or the last point (or both) coincides with the vertex, the angle is undefined and
@@ -321,8 +322,8 @@ public class Decide {
 
   /**
    * Checks that there exists at least one set of three data points separated by exactly c_pts and
-   * d_pts consecutive intervening points, respectively, that form an angle such that: angle &gt; (PI −
-   * epsilon) or angle &lt; (PI + epsilon)
+   * d_pts consecutive intervening points, respectively, that form an angle such that: angle &gt;
+   * (PI − epsilon) or angle &lt; (PI + epsilon)
    *
    * @param pts array of Point objects
    * @param params Parameter object

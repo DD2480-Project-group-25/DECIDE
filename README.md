@@ -36,7 +36,7 @@ Use `gradle build` to build from source.
 
 ## Contributing
 
-Please read [NAMING_CONVENTIONS.md](NAMING_CONVENTIONS.md) for details on how to
+Please read [CONTRIBUTING](CONTRIBUTING.md) for details on how to
 contribute to project. Before opening a pull request, please verify that the
 code builds and passes all tests.
 

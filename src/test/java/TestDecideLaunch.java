@@ -41,4 +41,29 @@ public class TestDecideLaunch {
 
         Assert.assertArrayEquals(PUM, result);
     }
+
+    @Test
+    public void testCalculateFUV() {
+        boolean[][] PUM = {{true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,false,false,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,false,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+                           {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true}};
+
+      boolean[] result = Decide.calculateFUV(PUM);
+      boolean[] FUV = {true,true,false,false,true,true,true,true,true,true,true,true,true,true,true};
+
+        Assert.assertArrayEquals(FUV, result);
+    }
+
 }

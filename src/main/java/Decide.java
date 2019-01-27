@@ -29,6 +29,10 @@ public class Decide {
                               {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
                               {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N}};
 
+    public static boolean[] PUV = {true,true,true,true,true,false,false,
+                                 false,false,false,false,false,false,false,false};
+
+
     /**
      * Decides if the "launch-unlock" signal will be generated.
      * The launch decision is made from the Final Unlocking Vector (FUV), where
@@ -45,7 +49,7 @@ public class Decide {
      * Calculates the CMV, Conditions Met Vector.
      * The fifteen elements of the CMV will be assigned boolean values true or false.
      * Each element of the CMV corresponds to one LIC’s condition.
-     */
+     TODO
     public void calculateCMV(Point[] pts, Parameters params){
         CMV[0] = LIC0(pts, params);
         CMV[1] = LIC1(pts, params);
@@ -63,7 +67,7 @@ public class Decide {
         CMV[13] = LIC13(pts, params);
         CMV[14] = LIC14(pts, params);
     }
-
+    */
     public static boolean[][] calculatePUM() {
         boolean[][] PUM = new boolean[15][15];
 
@@ -87,6 +91,25 @@ public class Decide {
             }
         }
         return PUM;
+    }
+
+    public static boolean[] calculateFUV(boolean[][] pum){
+        boolean[] FUV = new boolean[15];
+
+        for (int i = 0; i < 15; i++) {
+            if (!PUV[i]) {
+                FUV[i] = true; 
+            }else if (PUV[i]) {
+                FUV[i] = true;
+                for (int j = 0; j < 15; j++) {
+                    if (!pum[i][j]) {
+                        FUV[i] = false;
+                        break; 
+                    }
+                }
+            }
+        }
+        return FUV;
     }
 
     /**

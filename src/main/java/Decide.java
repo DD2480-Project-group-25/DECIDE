@@ -396,6 +396,73 @@ public class Decide {
     }
 
     /**
+     * Checks if there exists at least one set of n_pts consecutive data points such that
+     * at least one of the points lies a distance greater than dist from the line joining
+     * the first and last of these n_pts points.
+     * @param pts array of Point objects
+     * @param params Parameter object
+     * @return true if the distance between line and point is greater than params.dist.
+     */
+    public static boolean LIC6(Point[] pts, Parameters params) {
+        Point a, b, c;
+        double dxLine, dyLine;
+        double temp, u;
+        double dxPoint, dyPoint;
+        double x, y;
+        double lineDist;
+
+        if (params.dist < 0)
+            throw new IllegalArgumentException("dist must be greater than or equal to 0");
+
+        if (params.n_pts < 3 || pts.length < 3 || pts.length < params.n_pts) {
+            return false;
+        }
+        for (int i = 0; i <= pts.length-params.n_pts; i++) {
+            for (int j = 1; j < params.n_pts; j++) {
+                a = pts[i];
+                b = pts[i+params.n_pts-1];
+                c = pts[i+j];
+
+                // If the first and last points of the n_pts are identical, the distance to
+                // compare with dist will be the distance from the coincident point to all
+                // other points of the n_pts consecutive points.
+                if ((a.X == b.X) &&
+                        a.Y == b.Y) {
+                    if (a.distance(c) > params.dist) {
+                        return true;
+                    }
+                }
+                else {
+                    // Calculation of distance between line segment and point
+                    // ref: https://stackoverflow.com/a/2233538
+                    dxLine = b.X-a.X;
+                    dyLine = b.Y-a.Y;
+                    temp = (dxLine*dxLine)+(dyLine*dyLine);
+                    u = ((c.X - a.X) * dxLine +
+                            (c.Y - a.Y) * dyLine) / temp;
+                    
+                    if (u > 1) {
+                        u = 1;
+                    }
+                    else if (u < 0) {
+                        u = 0;
+                    }
+                    x = a.X + u * dxLine;
+                    y = a.Y + u * dyLine;
+                    dxPoint = x - c.X;
+                    dyPoint = y - c.Y;
+                    lineDist = Math.sqrt(dxPoint * dxPoint + dyPoint * dyPoint);
+
+                    if (lineDist > params.dist) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+     }
+  
+     /*
      * Checks if there is two points, separated by K_pts consecutive intervening
      * points, with a distance greater than LENGTH1 between each other. If such
      * points exists, check if there is (at least) two points, separated by K_pts
@@ -434,7 +501,7 @@ public class Decide {
                 return true;
             }
         }
-
+      
         return false;
     }
 }

@@ -460,58 +460,59 @@ public class Decide {
         return false;
     }
 
-  /**
-   * There exists at least one set of three data points, separated by exactly A_PTS and B_PTS
-   * consecutive intervening points, respectively, that cannot be contained within or on a circle of
-   * radius RADIUS1. In addition, there exists at least one set of three data points (which can be
-   * the same or different from the three data points just mentioned) separated by exactly A_PTS and
-   * B_PTS consecutive intervening points, respectively, that can be contained in or on a circle of
-   * radius RADIUS2. Both parts must be true for the LIC to be true. The condition is not met when
-   * NUMPOINTS < 5.
-   *
-   * 0 ≤ RADIUS2
-   *
-   * @param pts array of Points objects
-   * @param params Parameter object
-   * @return true if LIC13, as described above is true, false otherwise.
-   */
-  public static boolean LIC13(Point[] pts, Parameters params) {
-      int a_pts = params.a_pts;
-      int b_pts = params.b_pts;
-      double radius1 = params.radius1;
-      double radius2 = params.radius2;
+    /**
+     * There exists at least one set of three data points, separated by exactly A_PTS and B_PTS
+     * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+     * radius RADIUS1. In addition, there exists at least one set of three data points (which can be
+     * the same or different from the three data points just mentioned) separated by exactly A_PTS and
+     * B_PTS consecutive intervening points, respectively, that can be contained in or on a circle of
+     * radius RADIUS2. Both parts must be true for the LIC to be true. The condition is not met when
+     * NUMPOINTS < 5.
+     *
+     * 0 ≤ RADIUS2
+     *
+     * @param pts array of Points objects
+     * @param params Parameter object
+     * @return true if LIC13, as described above is true, false otherwise.
+     */
+    public static boolean LIC13(Point[] pts, Parameters params) {
+        int a_pts = params.a_pts;
+        int b_pts = params.b_pts;
+        double radius1 = params.radius1;
+        double radius2 = params.radius2;
 
-      if(a_pts < 1 && b_pts < 1) {
-          throw new IllegalArgumentException("A_PTS and B_PTS must be greater or equal to 1");
-      }
-      if(a_pts < 1) {
-          throw new IllegalArgumentException("A_PTS must be greater or equal to 1");
-      }
-      if(b_pts < 1) {
-          throw new IllegalArgumentException("B_PTS must be greater or equal to 1");
-      }
-      if(radius2 < 0) {
-          throw new IllegalArgumentException("RADIUS2 must be greater or equal to 0");
-      }
-      if(pts.length < 5) {
-          return false;
-      }
+        if(a_pts < 1 && b_pts < 1) {
+            throw new IllegalArgumentException("A_PTS and B_PTS must be greater or equal to 1");
+        }
+        if(a_pts < 1) {
+            throw new IllegalArgumentException("A_PTS must be greater or equal to 1");
+        }
+        if(b_pts < 1) {
+            throw new IllegalArgumentException("B_PTS must be greater or equal to 1");
+        }
+        if(radius2 < 0) {
+            throw new IllegalArgumentException("RADIUS2 must be greater or equal to 0");
+        }
+        if(pts.length < 5) {
+            return false;
+        }
 
-      for(int i = 0; i < pts.length - a_pts - b_pts - 2; i++) {
-          Point a = pts[i];
-          Point b = pts[i + a_pts + 1];
-          Point c = pts[i + a_pts + 1 + b_pts + 1];
+        for(int i = 0; i < pts.length - a_pts - b_pts - 2; i++) {
+            Point a = pts[i];
+            Point b = pts[i + a_pts + 1];
+            Point c = pts[i + a_pts + 1 + b_pts + 1];
 
-          boolean cond1 = !Circle.fits(radius1, a, b, c);
-          boolean cond2 = Circle.fits(radius2, a, b, c);
+            boolean cond1 = !Circle.fits(radius1, a, b, c);
+            boolean cond2 = Circle.fits(radius2, a, b, c);
 
-          if(cond1 && cond2) {
-              return true;
-          }
-      }
+            if(cond1 && cond2) {
+                return true;
+            }
+        }
 
-      return false;
+        return false;
     }
+
     /**
      * Checks that there exists at least one set of three data points, separated by exactly e_pts
      * and f_pts consecutive points, respectively, that are the vertices of a triangle

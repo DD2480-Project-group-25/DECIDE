@@ -171,7 +171,7 @@ public class Decide {
     }
 
     /**
-     * Checks that three exists at least one set of q_pts consecutive data points that lie in more than quads quadrants. 
+     * Checks that three exists at least one set of q_pts consecutive data points that lie in more than quads quadrants.
      * Checks for LIC3 in the input parameters.
      *
      * LIC3 is true if the input contains three consecutive points that forms a
@@ -245,13 +245,13 @@ public class Decide {
     /**
      * Checks that there exists at least one set of three data points, separated by exactly e_pts
      * and f_pts consecutive points, respectively, that are the vertices of a triangle
-     * with area greater than AREA1. 
-     * In addition, there exist three data points (can be the same as the mentioned points) separated by 
+     * with area greater than AREA1.
+     * In addition, there exist three data points (can be the same as the mentioned points) separated by
      * exactly e_pts and f_pts consecutive  points, respectively, that are the vertices of
-     * a triangle with area less than AREA2. 
+     * a triangle with area less than AREA2.
      * @param pts array of Points objects
      * @param params Parameter object
-     * @return true if both conditions above are true 
+     * @return true if both conditions above are true
      */
     public static boolean LIC14(Point[] pts, Parameters params) {
         int e_pts = params.e_pts;
@@ -283,7 +283,7 @@ public class Decide {
             }
         }
         return false;
-        
+
     }
 
     /**
@@ -304,7 +304,7 @@ public class Decide {
         }
         return false;
     }
-    
+
      /*
      * Checks if there is two points, separated by K_pts consecutive intervening
      * points, with a distance greater than LENGTH1 between each other.
@@ -335,7 +335,7 @@ public class Decide {
         }
         return false;
     }
-  
+
     /**
      * LIC11 is true if there exists at least one set of two data points, separated by exactly g_pts
      * consecutive intervening points, such that the first data point is to the right of the second point
@@ -361,6 +361,49 @@ public class Decide {
                 }
             }
         }
+        return false;
+    }
+
+    /**
+     * Checks if there is two points, separated by K_pts consecutive intervening
+     * points, with a distance greater than LENGTH1 between each other. If such
+     * points exists, check if there is (at least) two points, separated by K_pts
+     * consecutive intervening points, with a distance less than LENGTH2 apart.
+     * These points may be the same as the first pair or another pair in pts.
+     *
+     * @param pts array of data points of type Point
+     * @param params Parameter object acting as configuration
+     * @return boolean which is true iff LIC12 condition is met
+     */
+    public static boolean LIC12(Point[] pts, Parameters params) {
+        // NUMPOINTS needs to be at least 3
+        if (pts.length < 3) {
+            return false;
+        }
+
+        if (0 > params.length2) {
+            throw new IllegalArgumentException("Parameter LENGTH2 needs to be" +
+                    " greater or equal to zero!");
+        }
+
+        boolean c1 = false;
+        boolean c2 = false;
+
+        // Check distance between point p[i] and p[i + k_pts + 1]
+        for (int i = 0; i < pts.length - (params.k_pts + 1); i++) {
+            double dist = pts[i].distance(pts[i + params.k_pts + 1]);
+
+            if (!c1 && dist > params.length1) {
+                c1 = true;
+            }
+            if (!c2 && dist < params.length2) {
+                c2 = true;
+            }
+            if (c1 && c2) {
+                return true;
+            }
+        }
+
         return false;
     }
 }

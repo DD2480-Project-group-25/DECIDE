@@ -10,6 +10,25 @@ public class Decide {
 
     private boolean[] CMV = new boolean[15];
 
+    private final String A = "ANDD";
+    private final String O = "ORR";
+    private final String N = "NOTUSED";
+    private String[][] LCM = {{A,A,O,A,N,N,N,N,N,N,N,N,N,N,N},
+                              {A,A,O,O,N,N,N,N,N,N,N,N,N,N,N},
+                              {O,O,A,A,N,N,N,N,N,N,N,N,N,N,N},
+                              {A,O,A,A,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N},
+                              {N,N,N,N,N,N,N,N,N,N,N,N,N,N,N}};
+
     /**
      * Decides if the "launch-unlock" signal will be generated.
      * The launch decision is made from the Final Unlocking Vector (FUV), where
@@ -23,7 +42,7 @@ public class Decide {
     }
 
     /**
-     * Calculates the CMV, Conditions Met Vector. 
+     * Calculates the CMV, Conditions Met Vector.
      * The fifteen elements of the CMV will be assigned boolean values true or false.
      * Each element of the CMV corresponds to one LIC’s condition.
      */

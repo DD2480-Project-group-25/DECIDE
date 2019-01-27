@@ -265,4 +265,32 @@ public class Decide {
         }
         return false;
     }
+  
+    /**
+     * LIC11 is true if there exists at least one set of two data points, separated by exactly g_pts
+     * consecutive intervening points, such that the first data point is to the right of the second point
+     * on the x-axis.
+     * @param pts array of Points objects
+     * @param params Parameter object
+     * @return true if LIC3 as described above is true, false otherwise.
+     */
+    public static boolean LIC11(Point[] pts, Parameters params) {
+        if (params.g_pts < 1)
+            throw new IllegalArgumentException("g_pts must be greater than or equal to 1");
+        else if (pts.length < 3) {
+            return false;
+        }
+        Point p1, p2;
+
+        for (int i = 0; i < pts.length - params.g_pts - 1; i++) {
+            p1 = pts[i];
+            p2 = pts[i + params.g_pts + 1];
+            for (int j = 0; j < params.g_pts; j++) {
+                if (p2.X - p1.X < 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

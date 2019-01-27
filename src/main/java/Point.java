@@ -12,8 +12,8 @@ public class Point {
      *  @Param a point
      *  @Return the euclidean distance between this point and the other point.
      **/
-    public double distance(Point point){
-        return Math.sqrt(Math.pow(this.X-point.X,2)+Math.pow(this.Y-point.Y,2));
+    public double distance(Point p) {
+        return Math.hypot(X - p.X, Y - p.Y);
     }
 
     /**
@@ -26,5 +26,14 @@ public class Point {
      */
     public static double triangleArea(Point a, Point b, Point c) {
         return Math.abs((a.X * (b.Y - c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y))/2.0);
+    }
+
+    public Point subtract(Point p) {
+        return new Point(X - p.X, Y - p.Y);
+    }
+
+    // Signed area / determinant thing
+    public double cross(Point p) {
+        return X * p.Y - Y * p.X;
     }
 }

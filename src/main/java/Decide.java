@@ -8,12 +8,12 @@
  */
 public class Decide {
 
-    private boolean[] CMV = new boolean[15];
+    public static boolean[] CMV = new boolean[15];
 
-    private final String A = "ANDD";
-    private final String O = "ORR";
-    private final String N = "NOTUSED";
-    private String[][] LCM = {{A,A,O,A,N,N,N,N,N,N,N,N,N,N,N},
+    private static final String A = "ANDD";
+    private static final String O = "ORR";
+    private static final String N = "NOTUSED";
+    private static String[][] LCM = {{A,A,O,A,N,N,N,N,N,N,N,N,N,N,N},
                               {A,A,O,O,N,N,N,N,N,N,N,N,N,N,N},
                               {O,O,A,A,N,N,N,N,N,N,N,N,N,N,N},
                               {A,O,A,A,N,N,N,N,N,N,N,N,N,N,N},
@@ -62,6 +62,31 @@ public class Decide {
         CMV[12] = LIC12();
         CMV[13] = LIC13();
         CMV[14] = LIC14();
+    }
+
+    public static boolean[][] calculatePUM() {
+        boolean[][] PUM = new boolean[15][15];
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                if (LCM[i][j].equals("ANDD")) {
+                    if (CMV[i] && CMV[j]) {
+                        PUM[i][j] = true;
+                    } else {
+                        PUM[i][j] = false;
+                    }
+                } else if (LCM[i][j].equals("ORR")) {
+                    if (CMV[i] || CMV[j]) {
+                        PUM[i][j] = true;
+                    } else {
+                        PUM[i][j] = false;
+                    }
+                } else if (LCM[i][j].equals("NOTUSED")) {
+                    PUM[i][j] = true;
+                }
+            }
+        }
+        return PUM;
     }
 
     /**

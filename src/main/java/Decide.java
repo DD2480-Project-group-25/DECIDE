@@ -37,7 +37,7 @@ public class Decide {
      * @return true iff ALL values in the FUV is true, otherwise the return
      * value is set to false
      */
-    boolean decideLaunch() {
+    boolean decideLaunch(Point[] pts, Parameters params) {
         return false;
     }
 
@@ -46,22 +46,22 @@ public class Decide {
      * The fifteen elements of the CMV will be assigned boolean values true or false.
      * Each element of the CMV corresponds to one LIC’s condition.
      */
-    public void calculateCMV(){
-        CMV[0] = LIC0();
-        CMV[1] = LIC1();
-        CMV[2] = LIC2();
-        CMV[3] = LIC3();
-        CMV[4] = LIC4();
-        CMV[5] = LIC5();
-        CMV[6] = LIC6();
-        CMV[7] = LIC7();
-        CMV[8] = LIC8();
-        CMV[9] = LIC9();
-        CMV[10] = LIC10();
-        CMV[11] = LIC11();
-        CMV[12] = LIC12();
-        CMV[13] = LIC13();
-        CMV[14] = LIC14();
+    public void calculateCMV(Point[] pts, Parameters params){
+        CMV[0] = LIC0(pts, params);
+        CMV[1] = LIC1(pts, params);
+        CMV[2] = LIC2(pts, params);
+        CMV[3] = LIC3(pts, params);
+        CMV[4] = LIC4(pts, params);
+        CMV[5] = LIC5(pts, params);
+        CMV[6] = LIC6(pts, params);
+        CMV[7] = LIC7(pts, params);
+        CMV[8] = LIC8(pts, params);
+        CMV[9] = LIC9(pts, params);
+        CMV[10] = LIC10(pts, params);
+        CMV[11] = LIC11(pts, params);
+        CMV[12] = LIC12(pts, params);
+        CMV[13] = LIC13(pts, params);
+        CMV[14] = LIC14(pts, params);
     }
 
     public static boolean[][] calculatePUM() {

@@ -166,6 +166,7 @@ public class Decide {
     }
 
     /**
+     * Checks that three exists at least one set of q_pts consecutive data points that lie in more than quads quadrants. 
      * Checks for LIC3 in the input parameters.
      *
      * LIC3 is true if the input contains three consecutive points that forms a
@@ -233,6 +234,51 @@ public class Decide {
                 return true;
         }
         return false;
+    }
+
+
+    /**
+     * Checks that there exists at least one set of three data points, separated by exactly e_pts
+     * and f_pts consecutive points, respectively, that are the vertices of a triangle
+     * with area greater than AREA1. 
+     * In addition, there exist three data points (can be the same as the mentioned points) separated by 
+     * exactly e_pts and f_pts consecutive  points, respectively, that are the vertices of
+     * a triangle with area less than AREA2. 
+     * @param pts array of Points objects
+     * @param params Parameter object
+     * @return true if both conditions above are true 
+     */
+    public static boolean LIC14(Point[] pts, Parameters params) {
+        int e_pts = params.e_pts;
+        int f_pts = params.f_pts;
+        boolean greaterThanArea1 = false;
+        boolean lesserThanArea2 = false;
+
+        if (pts.length < 5) {
+            return false;
+        }
+        if(params.area1 < 0 || params.area2 < 0) {
+            throw new IllegalArgumentException("AREA1 and AREA2 must be greater than or equal to 0");
+        }
+
+        for (int i = 0; i < pts.length - e_pts - f_pts - 2; i++) {
+            Point x = pts[i];
+            Point v = pts[i + e_pts + 1];
+            Point y = pts[i + e_pts + f_pts + 2];
+            //calculate area (According to https://www.mathopenref.com/coordtrianglearea.html) and set greater and lesser
+            double area = Point.triangleArea(x, v, y);
+            if (area > params.area1) {
+                greaterThanArea1 = true;
+            }
+            if (area < params.area2) {
+                lesserThanArea2 = true;
+            }
+            if (greaterThanArea1 && lesserThanArea2) {
+                return true;
+            }
+        }
+        return false;
+        
     }
 
     /**

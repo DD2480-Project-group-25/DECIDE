@@ -112,14 +112,19 @@ public class Decide {
         return false;
     }
 
+    /**
+     * Checks if there are three consecutive data points that do not all fit into a circle of radius1.
+     * @param pts array of Point objects
+     * @param params Parameter object
+     * @return true if the condition above is met
+     */
     public static boolean LIC1(Point[] pts, Parameters params) {
         if (params.radius1 < 0)
             throw new IllegalArgumentException("Radius1 must be greater than or equal to 0");
 
         for (int i=0 ; i < pts.length-2; i++) {
-            for (int j=1 ; j<3; j++) {
-                if (pts[i].distance(pts[i+j]) > params.radius1)
-                    return true;
+            if (!(Circle.fits(params.radius1, pts[i], pts[i+1], pts[i+2]))) {
+                return true;
             }
         }
         return false;

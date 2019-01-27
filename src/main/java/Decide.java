@@ -44,6 +44,37 @@ public class Decide {
         return false;
     }
 
+    public static boolean LIC8(Point[] pts, Parameters params) {
+        int a_pts = params.a_pts;
+        int b_pts = params.b_pts;
+        double radius1 = params.radius1;
+
+        if(a_pts < 1) {
+            throw new IllegalArgumentException("A_PTS must be greater or equal to 1");
+        }
+        if(b_pts < 1) {
+            throw new IllegalArgumentException("B_PTS must be greater or equal to 1");
+        }
+        if(pts.length < 5) {
+            return false;
+        }
+        if(a_pts + b_pts > pts.length - 3) {
+            throw new IllegalArgumentException("A_PTS + B_PTS not less or equal to NUMPOINTS -3");
+        }
+
+        for(int i = 0; i < pts.length - a_pts - b_pts - 2; i++) {
+            Point a = pts[i];
+            Point b = pts[i + a_pts + 1];
+            Point c = pts[i + a_pts + 1 + b_pts + 1];
+
+            if(!Circle.fits(radius1, a, b, c)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Checks that there exists at least one set of three data points separated
      * by exactly c_pts and d_pts consecutive intervening points, respectively,

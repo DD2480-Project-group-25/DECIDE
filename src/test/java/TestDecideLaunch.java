@@ -4,6 +4,16 @@ import org.junit.Test;
 public class TestDecideLaunch {
 
     @Test
+    public void testDecideLaunchYes() {
+        //TODO
+    }
+
+    @Test
+    public void testDecideLaunchNo() {
+        //TODO
+    }
+
+    @Test
     public void testCalculatePUM() {
         Decide.CMV[0] = true;
         Decide.CMV[1] = true;

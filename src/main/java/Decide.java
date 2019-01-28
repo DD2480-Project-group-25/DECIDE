@@ -45,7 +45,6 @@ public class Decide {
         calculateCMV(pts, params);
         boolean[][] pum = calculatePUM();
         boolean[] fuv = calculateFUV(pum);
-        printOutput (pum, fuv);
         return false;
     }
 
@@ -106,10 +105,6 @@ public class Decide {
             }
         }
         return FUV;
-    }
-
-    public void printOutput (boolean[][] pum, boolean[] fuv){
-        // TODO
     }
 
     /**

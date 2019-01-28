@@ -55,6 +55,7 @@ public class TestLIC7 {
     Assert.assertFalse(res);
   }
 
+  /** Test with a Point array of length 2. Should be false but not cause any exception */
   @Test
   public void testShortList() {
     Point[] pts = new Point[2];

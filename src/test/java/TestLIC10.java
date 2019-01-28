@@ -4,11 +4,11 @@ import org.junit.Test;
 public class TestLIC10 {
 
   /**
-   * Two test cases:
-   * 1) Test that the method can find the right triangle with vertices at point b, d and g, which are separated by
-   * 1 and 2 points respectively. The triangle's area is 3, which is greater than area1 = 2.99. Should return true
-   * 2) Test that the method can find the oblique triangle with vertices at point b, h, i, which are separated by
-   * 1 and 2 points respectively. The triangle's area is 2.5, which is greater than area1 = 2.49. Should return true
+   * Two test cases: 1) Test that the method can find the right triangle with vertices at point b, d
+   * and g, which are separated by 1 and 2 points respectively. The triangle's area is 3, which is
+   * greater than area1 = 2.99. Should return true 2) Test that the method can find the oblique
+   * triangle with vertices at point b, h, i, which are separated by 1 and 2 points respectively.
+   * The triangle's area is 2.5, which is greater than area1 = 2.49. Should return true
    */
   @Test
   public void testTriangle() {
@@ -33,9 +33,9 @@ public class TestLIC10 {
   }
 
   /**
-   * Test that the method handles a triangle with negative coordinates correct.
-   * The triangle have vertices in point b, d and g, which are separated by 1 and 2 points respectively. The
-   * area of the triangle is 3, which is compared to area1 = 2.99. Should return true.
+   * Test that the method handles a triangle with negative coordinates correct. The triangle have
+   * vertices in point b, d and g, which are separated by 1 and 2 points respectively. The area of
+   * the triangle is 3, which is compared to area1 = 2.99. Should return true.
    */
   @Test
   public void testNegativeTrianglePoints() {
@@ -53,8 +53,8 @@ public class TestLIC10 {
   }
 
   /**
-   * Test that the method returns false when there is no triangle with area greater than 1.5.
-   * The triangle tested have vertices in point b, c and g, separated by 1 and 2 points respectively
+   * Test that the method returns false when there is no triangle with area greater than 1.5. The
+   * triangle tested have vertices in point b, c and g, separated by 1 and 2 points respectively
    */
   @Test
   public void testNoTriangle() {
@@ -71,9 +71,7 @@ public class TestLIC10 {
     Assert.assertFalse(Decide.LIC10(pts, params));
   }
 
-  /**
-   * Test that the method returns false when number of points are less than 5
-   */
+  /** Test that the method returns false when number of points are less than 5 */
   @Test
   public void testNumPoints() {
     Parameters params = null;
@@ -86,9 +84,7 @@ public class TestLIC10 {
     Assert.assertFalse(Decide.LIC10(pts, params));
   }
 
-  /**
-   * Test that the method handles an empty point array in a correct way and returns false
-   */
+  /** Test that the method handles an empty point array in a correct way and returns false */
   @Test
   public void testEmptyPointArray() {
     Parameters params = null;
@@ -113,8 +109,8 @@ public class TestLIC10 {
   }
 
   /**
-   * Test that the method throws an IllegalArgumentException when the condition (e_pts + f_pts) <= (numpoints - 3)
-   * is not met
+   * Test that the method throws an IllegalArgumentException when the condition (e_pts + f_pts) <=
+   * (numpoints - 3) is not met
    */
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalSumEptsFpts() {

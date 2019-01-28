@@ -7,7 +7,7 @@ public class TestLIC12 {
   @Rule public final ExpectedException exception = ExpectedException.none();
 
   /**
-   * Creates 6 points along the Y-axis: [0,2,4,4,5,6]. Verifies that it is possible to find at least
+   * Creates 6 points along the Y-axis: [0,2,3,4,5,6]. Verifies that it is possible to find at least
    * two instances of points, separated by two consecutive points, where distance for the first set
    * is greater than 4 and the other is less than 3.01.
    */
@@ -28,7 +28,7 @@ public class TestLIC12 {
   }
 
   /**
-   * Creates 6 points along the Y-axis: [0,2,4,4,5,6]. Verifies that it is NOT possible to find at
+   * Creates 6 points along the Y-axis: [0,2,3,4,5,6]. Verifies that it is NOT possible to find at
    * least two instances of points, separated by two consecutive points, where distance for the
    * first set is greater than 3.99 and the other is less than 3.
    */

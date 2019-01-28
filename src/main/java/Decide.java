@@ -32,6 +32,11 @@ public class Decide {
     public static boolean[] PUV = {true,true,true,true,true,false,false,
                                  false,false,false,false,false,false,false,false};
 
+    public static Parameters params = new Parameters(1, 1, 1, 1,
+                                                     0, 1, 1, 1, 2, 1, 3, 1,
+                                                     1, 1, 1, 1, 1, 1, 1);
+    public static Point[] pts = {new Point(1, 1), new Point(2, 2)};
+
 
     /**
      * Decides if the "launch-unlock" signal will be generated.
@@ -41,7 +46,7 @@ public class Decide {
      * @return true iff ALL values in the FUV is true, otherwise the return
      * value is set to false
      */
-    boolean decideLaunch(Point[] pts, Parameters params) {
+    public static boolean decideLaunch(Point[] pts, Parameters params) {
         calculateCMV(pts, params);
         boolean[][] pum = calculatePUM();
         boolean[] fuv = calculateFUV(pum);
@@ -58,7 +63,7 @@ public class Decide {
      * The fifteen elements of the CMV will be assigned boolean values true or false.
      * Each element of the CMV corresponds to one LIC’s condition.
      */
-    public void calculateCMV(Point[] pts, Parameters params){
+    public static void calculateCMV(Point[] pts, Parameters params){
         CMV[0] = LIC0(pts, params);
         CMV[1] = LIC1(pts, params);
         CMV[2] = LIC2(pts, params);
@@ -644,5 +649,14 @@ public class Decide {
             }
         }
         return false;
+    }
+
+    public static void main( String[] args ) {
+        boolean lanuch = decideLaunch(pts, params);
+        if (lanuch) {
+            System.out.println("YES");
+        } else{
+            System.out.println("NO");
+        }
     }
 }

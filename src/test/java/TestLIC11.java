@@ -50,7 +50,7 @@ public class TestLIC11 {
     Point[] pts0 = {a, b};
     Parameters params = new Parameters(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2);
     Assert.assertFalse(Decide.LIC11(pts0, params));
-      
+
     Point[] pts1 = {a, b, c};
     Parameters bigGpts = new Parameters(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2);
     Assert.assertFalse(Decide.LIC11(pts1, bigGpts));

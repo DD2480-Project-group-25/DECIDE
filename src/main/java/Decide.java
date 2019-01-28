@@ -80,8 +80,8 @@ public class Decide {
     if (0 <= params.epsilon && params.epsilon < Math.PI) {
       /* Condition fulfilled */
     } else {
-      throw new ArithmeticException(
-          "Condition: 0 ≤ EPSILON < PI, is not fulfilled. " + "Check configuration for EPSILON");
+      throw new IllegalArgumentException(
+          "Condition: 0 ≤ EPSILON < PI, is not fulfilled. Check configuration for EPSILON");
     }
 
     // Last check will be points[i-2], points[i-1
@@ -288,6 +288,14 @@ public class Decide {
     return false;
   }
 
+  /**
+   * Checks if there exists three points, separated by A_PTS and B_PTS, respectively, such that they
+   * cannot fit inside a circle with radius RADIUS1.
+   *
+   * @param pts array of data points of type Point
+   * @param params Parameter object acting as configuration
+   * @return true if the condition described above is true, false otherwise.
+   */
   public static boolean LIC8(Point[] pts, Parameters params) {
     int a_pts = params.a_pts;
     int b_pts = params.b_pts;

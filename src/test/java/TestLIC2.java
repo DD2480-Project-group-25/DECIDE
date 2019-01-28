@@ -3,21 +3,23 @@ import org.junit.Test;
 
 public class TestLIC2 {
   /** Assert that exception is thrown if epsilon is configured as higher value than PI */
-  @Test(expected = ArithmeticException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testTrowsHighEpsilon() {
     Parameters params = new Parameters(0, 0, 0, 0, 3.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     Point[] pts = new Point[1];
 
-    Decide.LIC2(pts, params);
+    TestUtils.checkErrorMessage(
+            () -> Decide.LIC2(pts, params), "Condition: 0 ≤ EPSILON < PI, is not fulfilled. Check configuration for EPSILON");
   }
 
   /** Assert that exception is thrown if epsilon is configured as lower than zero */
-  @Test(expected = ArithmeticException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testTrowsLowEpsilon() {
     Parameters params = new Parameters(0, 0, 0, 0, -0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     Point[] pts = new Point[1];
 
-    Decide.LIC2(pts, params);
+    TestUtils.checkErrorMessage(
+            () -> Decide.LIC2(pts, params), "Condition: 0 ≤ EPSILON < PI, is not fulfilled. Check configuration for EPSILON");
   }
 
   @Test

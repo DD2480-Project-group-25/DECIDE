@@ -3,10 +3,9 @@ import org.junit.Test;
 
 public class TestLIC9 {
   /**
-  * Test that LIC9 method works when c_pts = d_pts = 1 and epsilon = 1.
-  * The data points form the triangle ace with the angle 0.519rad.
-  * This angle fulfills the requriment angle < (PI − EPSILON)
-  */
+   * Test that LIC9 method works when c_pts = d_pts = 1 and epsilon = 1. The data points form the
+   * triangle ace with the angle 0.519rad. This angle fulfills the requriment angle < (PI − EPSILON)
+   */
   @Test
   public void testEqualCptsDpts() {
     Parameters params = new Parameters(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0);
@@ -21,11 +20,10 @@ public class TestLIC9 {
   }
 
   /**
-  * Test that LIC9 method works epsilon = 1 and different values for c_pts and d_pts.
-  * (c_pts = 2 and d_pts = 3)
-  * The data points form the triangle adh with the angle 0.519rad.
-  * This angle fulfills the requriment angle < (PI − EPSILON)
-  */
+   * Test that LIC9 method works epsilon = 1 and different values for c_pts and d_pts. (c_pts = 2
+   * and d_pts = 3) The data points form the triangle adh with the angle 0.519rad. This angle
+   * fulfills the requriment angle < (PI − EPSILON)
+   */
   @Test
   public void testNonEqualCptsDpts() {
     Parameters params = new Parameters(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 0, 0);
@@ -43,12 +41,10 @@ public class TestLIC9 {
   }
 
   /**
-  * Test that LIC9 method returns false when
-  * epsilon = 3 and c_pts = d_pts = 1.
-  * The data points form the triangle ace with the angle 0.519rad.
-  * This angle does not fulfill the requriments angle < (PI − EPSILON) or
-  * angle > (PI + EPSILON)
-  */
+   * Test that LIC9 method returns false when epsilon = 3 and c_pts = d_pts = 1. The data points
+   * form the triangle ace with the angle 0.519rad. This angle does not fulfill the requriments
+   * angle < (PI − EPSILON) or angle > (PI + EPSILON)
+   */
   @Test
   public void testNegative() {
     Parameters params = new Parameters(0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0);
@@ -62,9 +58,7 @@ public class TestLIC9 {
     Assert.assertEquals(false, Decide.LIC9(pts, params));
   }
 
-  /**
-  * Test that LIC9 method returns false when number of data points is less than 5.
-  */
+  /** Test that LIC9 method returns false when number of data points is less than 5. */
   @Test
   public void testLessThanFivePoints() {
     Parameters params = new Parameters(0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0);
@@ -75,9 +69,7 @@ public class TestLIC9 {
     Assert.assertEquals(false, Decide.LIC9(pts, params));
   }
 
-  /**
-  * Check that IllegalArgumentException is thrown c_pts value is invalid
-  */
+  /** Check that IllegalArgumentException is thrown c_pts value is invalid */
   @Test(expected = IllegalArgumentException.class)
   public void testCptsIsZero() {
     Parameters params = new Parameters(0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0);

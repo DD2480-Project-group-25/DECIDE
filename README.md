@@ -56,8 +56,10 @@ code builds and passes all tests.
 * **Marcus Granström**
   * Completed LIC 2, 7 and 12 with corresponding tests
   * Wrote this readme
-* **Veronica Hage**
+* **Veronica Hage** (Also known as: **--add**, **=** and simply **vronc** under "insights")
   * Completed LIC 1, 6 and 11 with corresponding tests
+ 
+ *Note: due to some misconfiguration **Veronica's** commits shows up under different names in the project summary.*
 
 See also the list of [contributors](https://github.com/DD2480-Project-group-25/DECIDE/contributors) who participated in this project.
 

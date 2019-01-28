@@ -6,6 +6,11 @@ import org.junit.rules.ExpectedException;
 public class TestLIC12 {
   @Rule public final ExpectedException exception = ExpectedException.none();
 
+  /**
+   * Creates 6 points along the Y-axis: [0,2,3,4,5,6]. Verifies that it is possible to find at least
+   * two instances of points, separated by two consecutive points, where distance for the first set
+   * is greater than 4 and the other is less than 3.01.
+   */
   @Test
   public void testPositive() {
     Point p1 = new Point(0, 0);
@@ -22,6 +27,11 @@ public class TestLIC12 {
     Assert.assertTrue(res);
   }
 
+  /**
+   * Creates 6 points along the Y-axis: [0,2,3,4,5,6]. Verifies that it is NOT possible to find at
+   * least two instances of points, separated by two consecutive points, where distance for the
+   * first set is greater than 3.99 and the other is less than 3.
+   */
   @Test
   public void testNegative() {
     Point p1 = new Point(0, 0);
@@ -38,6 +48,10 @@ public class TestLIC12 {
     Assert.assertFalse(res);
   }
 
+  /**
+   * Verify that a list of length 2 generates a false result, as it is not possible to find any set
+   * with at least one separating point from a set of two data points.
+   */
   @Test
   public void testShortList() {
     Point[] pts = new Point[2];
@@ -48,6 +62,7 @@ public class TestLIC12 {
     Assert.assertFalse(res);
   }
 
+  /** Verify that negative length on parameter length2 causes an exception as stated in LIC12. */
   @Test
   public void testException() {
     Point[] pts = new Point[3];

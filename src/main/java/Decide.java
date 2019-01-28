@@ -80,8 +80,8 @@ public class Decide {
     if (0 <= params.epsilon && params.epsilon < Math.PI) {
       /* Condition fulfilled */
     } else {
-      throw new ArithmeticException(
-          "Condition: 0 ≤ EPSILON < PI, is not fulfilled. " + "Check configuration for EPSILON");
+      throw new IllegalArgumentException(
+          "Condition: 0 ≤ EPSILON < PI, is not fulfilled. Check configuration for EPSILON");
     }
 
     // Last check will be points[i-2], points[i-1

@@ -4,8 +4,8 @@ import org.junit.Test;
 public class TestLIC0 {
 
   /**
-   * Three points where the distance between point b and point c is ≈11,31 and
-   * the distances is compared to length1 = 10
+   * Three points where the distance between point b and point c is ≈11,31 and the distances is
+   * compared to length1 = 10
    */
   @Test
   public void testDistance() {
@@ -20,8 +20,8 @@ public class TestLIC0 {
   }
 
   /**
-   * Three points where no consecutive points have a distance between them that
-   * is greater than lenght1 = 10. The distance between point b and c is ≈9.90
+   * Three points where no consecutive points have a distance between them that is greater than
+   * lenght1 = 10. The distance between point b and c is ≈9.90
    */
   @Test
   public void testNoDistance() {
@@ -35,9 +35,7 @@ public class TestLIC0 {
     Assert.assertFalse(Decide.LIC0(pts, params));
   }
 
-  /**
-   * Test that method handles an empty point array correct and returns false
-   */
+  /** Test that method handles an empty point array correct and returns false */
   @Test
   public void testEmptyPointArray() {
     Parameters params = new Parameters(10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -45,9 +43,7 @@ public class TestLIC0 {
     Assert.assertFalse(Decide.LIC0(pts, params));
   }
 
-  /**
-   * Test that the method handles negative coordinates in a proper way
-   */
+  /** Test that the method handles negative coordinates in a proper way */
   @Test
   public void testNegativeCoordinates() {
     Parameters params = new Parameters(10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -61,9 +57,7 @@ public class TestLIC0 {
     Assert.assertFalse(Decide.LIC0(pts2, params));
   }
 
-  /**
-   * Test that if length1 < 0, the method should throw an IllegalArgumentException
-   */
+  /** Test that if length1 < 0, the method should throw an IllegalArgumentException */
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalArgument() {
     Point a = new Point(1, 1);

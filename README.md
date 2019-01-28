@@ -66,3 +66,8 @@ This project is licensed under the LGPL v3.0 License - see the [LICENSE.md](LICE
 ## Acknowledgments
 * `Circle` - [Project Nayuki](https://www.nayuki.io/page/smallest-enclosing-circle), smallest enclosing circle library
 
+## What we are proud of
+We managed to setup neat CI environment that checks:
+ * tests,
+ * format according to our style guide, and
+ * that our javadoc can be generated

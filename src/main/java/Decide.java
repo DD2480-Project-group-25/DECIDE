@@ -78,17 +78,9 @@ public class Decide {
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
                 if (LCM[i][j].equals("ANDD")) {
-                    if (CMV[i] && CMV[j]) {
-                        PUM[i][j] = true;
-                    } else {
-                        PUM[i][j] = false;
-                    }
+                    PUM[i][j] = CMV[i] && CMV[j];
                 } else if (LCM[i][j].equals("ORR")) {
-                    if (CMV[i] || CMV[j]) {
-                        PUM[i][j] = true;
-                    } else {
-                        PUM[i][j] = false;
-                    }
+                    PUM[i][j] = CMV[i] || CMV[j];
                 } else if (LCM[i][j].equals("NOTUSED")) {
                     PUM[i][j] = true;
                 }
@@ -103,7 +95,7 @@ public class Decide {
         for (int i = 0; i < 15; i++) {
             if (!PUV[i]) {
                 FUV[i] = true;
-            }else if (PUV[i]) {
+            }else {
                 FUV[i] = true;
                 for (int j = 0; j < 15; j++) {
                     if (!pum[i][j]) {

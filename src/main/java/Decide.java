@@ -1,5 +1,5 @@
 /**
- * DECIDE - Launch Interceptor Program #TODO
+ * DECIDE - Launch Interceptor Program
  *
  * @author Alzahraa Salman, Helena Alinder, Jesper Larsson, Marcus Granström, Veronica Hage
  * @version 0.1

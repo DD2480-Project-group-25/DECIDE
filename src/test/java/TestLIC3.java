@@ -3,6 +3,7 @@ import org.junit.Test;
 
 public class TestLIC3 {
 
+  /** Test that LIC3 can correctly identify a triangle with area larger than area1. */
   @Test
   public void testPositive() {
     Parameters params =
@@ -22,6 +23,7 @@ public class TestLIC3 {
     Assert.assertTrue(actual);
   }
 
+  /** Test that LIC3 can correctly identify if there is no triangle with area larger than area1. */
   @Test
   public void testNegative() {
     Parameters params =
@@ -41,9 +43,7 @@ public class TestLIC3 {
     Assert.assertFalse(actual);
   }
 
-  /*
-   * Test what happens when 0<=AREA1 isn't true.
-   */
+  /** Test that an exception is raised when 0<=AREA1 isn't true. */
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalArea1Parameter() {
     Parameters params =
@@ -62,6 +62,7 @@ public class TestLIC3 {
         () -> Decide.LIC3(pts, params), "AREA1 must be greater or equal to 0");
   }
 
+  /** Test that LIC3 returns false when the pts is empty and parameter object is valid. */
   @Test
   public void testEmptyPointsArray() {
     Parameters params =

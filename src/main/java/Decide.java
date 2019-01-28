@@ -7,17 +7,131 @@
  */
 public class Decide {
 
-  private boolean[] CMV = new boolean[15];
+  public static boolean[] CMV = new boolean[15];
+
+  private static final String A = "ANDD";
+  private static final String O = "ORR";
+  private static final String N = "NOTUSED";
+  private static String[][] LCM = {
+    {A, A, O, A, N, N, N, N, N, N, N, N, N, N, N},
+    {A, A, O, O, N, N, N, N, N, N, N, N, N, N, N},
+    {O, O, A, A, N, N, N, N, N, N, N, N, N, N, N},
+    {A, O, A, A, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N},
+    {N, N, N, N, N, N, N, N, N, N, N, N, N, N, N}
+  };
+
+  public static boolean[] PUV = {
+    true, true, true, true, true, false, false, false, false, false, false, false, false, false,
+    false
+  };
+
+  public static Parameters params =
+      new Parameters(1, 1, 1, 1, 0, 1, 1, 1, 2, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1);
+  public static Point[] pts = {new Point(1, 1), new Point(2, 2)};
 
   /**
    * Decides if the "launch-unlock" signal will be generated. The launch decision is made from the
    * Final Unlocking Vector (FUV), where all values needs to be true in order to unlock the launch
    * signal.
    *
+   * @param pts array of Point objects
+   * @param params Parameter object
    * @return true iff ALL values in the FUV is true, otherwise the return value is set to false
    */
-  boolean decideLaunch() {
-    return false;
+  public static boolean decideLaunch(Point[] pts, Parameters params) {
+    calculateCMV(pts, params);
+    boolean[][] pum = calculatePUM();
+    boolean[] fuv = calculateFUV(pum);
+    for (boolean b : fuv) {
+      if (!b) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Calculates the CMV, Conditions Met Vector. The fifteen elements of the CMV will be assigned
+   * boolean values true or false. Each element of the CMV corresponds to one LIC’s condition.
+   *
+   * @param pts array of Point objects
+   * @param params Parameter object
+   */
+  public static void calculateCMV(Point[] pts, Parameters params) {
+    CMV[0] = LIC0(pts, params);
+    CMV[1] = LIC1(pts, params);
+    CMV[2] = LIC2(pts, params);
+    CMV[3] = LIC3(pts, params);
+    CMV[4] = LIC4(pts, params);
+    CMV[5] = LIC5(pts);
+    CMV[6] = LIC6(pts, params);
+    CMV[7] = LIC7(pts, params);
+    CMV[8] = LIC8(pts, params);
+    CMV[9] = LIC9(pts, params);
+    CMV[10] = LIC10(pts, params);
+    CMV[11] = LIC11(pts, params);
+    CMV[12] = LIC12(pts, params);
+    CMV[13] = LIC13(pts, params);
+    CMV[14] = LIC14(pts, params);
+  }
+
+  /**
+   * Calculates the PUM, Preliminary Unlocking Matrix. The PUM is calculated given CMV and LCM.
+   * Calculate PUM[i,j] by applying the operator in LCM[i,j] to element i and j in CMV.
+   *
+   * @return PUM, boolean matrix 15x15
+   */
+  public static boolean[][] calculatePUM() {
+    boolean[][] PUM = new boolean[15][15];
+
+    for (int i = 0; i < 15; i++) {
+      for (int j = 0; j < 15; j++) {
+        if (LCM[i][j].equals("ANDD")) {
+          PUM[i][j] = CMV[i] && CMV[j];
+        } else if (LCM[i][j].equals("ORR")) {
+          PUM[i][j] = CMV[i] || CMV[j];
+        } else if (LCM[i][j].equals("NOTUSED")) {
+          PUM[i][j] = true;
+        }
+      }
+    }
+    return PUM;
+  }
+
+  /**
+   * Calculates the FUV, Final Unlocking Vector. The FUV is calculated based on PUM and PUV. FUV[i]
+   * is set to true if PUV[i] is false or if all elements in PUM row i are true.
+   *
+   * @param pum the PUM matrix calculated with LCM and CMV
+   * @return FUV, boolean matrix 15x15
+   */
+  public static boolean[] calculateFUV(boolean[][] pum) {
+    boolean[] FUV = new boolean[15];
+
+    for (int i = 0; i < 15; i++) {
+      if (!PUV[i]) {
+        FUV[i] = true;
+      } else {
+        FUV[i] = true;
+        for (int j = 0; j < 15; j++) {
+          if (!pum[i][j]) {
+            FUV[i] = false;
+            break;
+          }
+        }
+      }
+    }
+    return FUV;
   }
 
   /**
@@ -567,5 +681,14 @@ public class Decide {
       }
     }
     return false;
+  }
+
+  public static void main(String[] args) {
+    boolean lanuch = decideLaunch(pts, params);
+    if (lanuch) {
+      System.out.println("YES");
+    } else {
+      System.out.println("NO");
+    }
   }
 }

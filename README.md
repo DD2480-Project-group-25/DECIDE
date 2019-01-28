@@ -3,6 +3,8 @@
 
 `DECIDE()` determines whether an interceptor should be launched based upon input radar tracking information.
 
+Refer to the [documentation](https://372-167187406-gh.circle-artifacts.com/0/javadoc/package-summary.html) for more information.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.

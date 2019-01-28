@@ -61,18 +61,4 @@ public class TestLIC3 {
     TestUtils.checkErrorMessage(
         () -> Decide.LIC3(pts, params), "AREA1 must be greater or equal to 0");
   }
-
-  /** Test that LIC3 returns false when the pts is empty and parameter object is valid. */
-  @Test
-  public void testEmptyPointsArray() {
-    Parameters params =
-        new Parameters(
-            0, 0, 0, 0, 0, 77, // Only interesting parameter for LIC3
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Point[] pts = {};
-
-    boolean actual = Decide.LIC3(pts, params);
-
-    Assert.assertFalse(actual);
-  }
 }

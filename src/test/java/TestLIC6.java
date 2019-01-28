@@ -96,7 +96,7 @@ public class TestLIC6 {
   @Test
   public void testBadData() {
 
-    // Testing length of pts < 3
+    // Testing number of data points < 3
     Parameters params = new Parameters(0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0);
 
     Point a = new Point(0, 0);

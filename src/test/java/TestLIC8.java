@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestLIC8 {
+  /** Test that an exception is thrown when A_PTS is invalid. */
   @Test(expected = IllegalArgumentException.class)
   public void TestIllegalA() {
     Parameters params =
@@ -17,6 +18,7 @@ public class TestLIC8 {
         () -> Decide.LIC8(pts, params), "A_PTS must be greater or equal to 1");
   }
 
+  /** Test that an exception is thrown when B_PTS is invalid. */
   @Test(expected = IllegalArgumentException.class)
   public void TestIllegalB() {
     Parameters params =
@@ -32,6 +34,7 @@ public class TestLIC8 {
         () -> Decide.LIC8(pts, params), "B_PTS must be greater or equal to 1");
   }
 
+  /** Test that false is returned when there are fewer than five points. */
   @Test
   public void TestFewerThanFivePoints() {
     Parameters params =
@@ -48,6 +51,10 @@ public class TestLIC8 {
     Assert.assertFalse(Decide.LIC8(pts, params));
   }
 
+  /**
+   * Test that an exceptions is thrown if there are fewer points than required as a consequence of
+   * A_PTS and B_PTS.
+   */
   @Test(expected = IllegalArgumentException.class)
   public void TestFewerPointsThanRequired() {
     Parameters params =
@@ -65,6 +72,7 @@ public class TestLIC8 {
         () -> Decide.LIC8(pts, params), "A_PTS + B_PTS not less or equal to NUMPOINTS -3");
   }
 
+  /** Test that true is returned with an example of an input that do satisfy LIC8. */
   @Test
   public void TestPositive() {
     Parameters params =
@@ -81,6 +89,7 @@ public class TestLIC8 {
     Assert.assertTrue(Decide.LIC8(pts, params));
   }
 
+  /** Test that false is returned with an example of an input that do not satisfy LIC8. */
   @Test
   public void TestNegative() {
     Parameters params =

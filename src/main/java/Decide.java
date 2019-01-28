@@ -42,7 +42,8 @@ public class Decide {
      * Decides if the "launch-unlock" signal will be generated.
      * The launch decision is made from the Final Unlocking Vector (FUV), where
      * all values needs to be true in order to unlock the launch signal.
-     *
+     * @param pts array of Point objects
+     * @param params Parameter object
      * @return true iff ALL values in the FUV is true, otherwise the return
      * value is set to false
      */
@@ -62,6 +63,8 @@ public class Decide {
      * Calculates the CMV, Conditions Met Vector.
      * The fifteen elements of the CMV will be assigned boolean values true or false.
      * Each element of the CMV corresponds to one LIC’s condition.
+     * @param pts array of Point objects
+     * @param params Parameter object
      */
     public static void calculateCMV(Point[] pts, Parameters params){
         CMV[0] = LIC0(pts, params);
@@ -81,6 +84,12 @@ public class Decide {
         CMV[14] = LIC14(pts, params);
     }
 
+    /**
+     * Calculates the PUM, Preliminary Unlocking Matrix.
+     * The PUM is calculated given CMV and LCM. 
+     * Calculate PUM[i,j] by applying the operator in LCM[i,j] to element i and j in CMV.
+     * @return PUM, boolean matrix 15x15
+     */
     public static boolean[][] calculatePUM() {
         boolean[][] PUM = new boolean[15][15];
 
@@ -98,6 +107,13 @@ public class Decide {
         return PUM;
     }
 
+    /**
+     * Calculates the FUV, Final Unlocking Vector. 
+     * The FUV is calculated based on PUM and PUV.
+     * FUV[i] is set to true if PUV[i] is false or if all elements in PUM row i are true.
+     * @param pum the PUM matrix calculated with LCM and CMV
+     * @return FUV, boolean matrix 15x15
+     */
     public static boolean[] calculateFUV(boolean[][] pum){
         boolean[] FUV = new boolean[15];
 

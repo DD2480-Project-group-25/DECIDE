@@ -49,16 +49,20 @@ public class TestLIC3 {
     Parameters params =
         new Parameters(
             0, 0, 0, 0, 0, -101, // Only interesting parameter for LIC3
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     Point[] pts = {
       new Point(10, 5),
       new Point(0, 0), // -------
-      new Point(10, 0), // these form a triangle with area 50
+            new Point(10, 0), // these form a triangle with area 50
       new Point(0, 10), // -------
       new Point(6, 6)
     };
-
     TestUtils.checkErrorMessage(
+
+
+
+
+            
         () -> Decide.LIC3(pts, params), "AREA1 must be greater or equal to 0");
   }
 }

@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestLIC13 {
+  /** Test that an exception is raised when A_PTS is invalid. */
   @Test(expected = IllegalArgumentException.class)
   public void TestIllegalA() {
     Parameters params =
@@ -20,6 +21,7 @@ public class TestLIC13 {
         () -> Decide.LIC13(pts, params), "A_PTS must be greater or equal to 1");
   }
 
+  /** Test that an exception is raised when B_PTS is invalid. */
   @Test(expected = IllegalArgumentException.class)
   public void TestIllegalB() {
     Parameters params =
@@ -38,6 +40,7 @@ public class TestLIC13 {
         () -> Decide.LIC13(pts, params), "B_PTS must be greater or equal to 1");
   }
 
+  /** Test that an exception is raised when A_PTS and B_PTS is invalid. */
   @Test(expected = IllegalArgumentException.class)
   public void TestIllegalAB() {
     Parameters params =
@@ -56,6 +59,7 @@ public class TestLIC13 {
         () -> Decide.LIC13(pts, params), "A_PTS and B_PTS must be greater or equal to 1");
   }
 
+  /** Test that an exception is raised when RADIUS2 is invalid. */
   @Test(expected = IllegalArgumentException.class)
   public void TestIllegalRadius2() {
     Parameters params =
@@ -74,6 +78,7 @@ public class TestLIC13 {
         () -> Decide.LIC13(pts, params), "RADIUS2 must be greater or equal to 0");
   }
 
+  /** Test that false is returned when fewer than five points are used. */
   @Test
   public void TestFewerThanFivePoints() {
     Parameters params =
@@ -91,6 +96,7 @@ public class TestLIC13 {
     Assert.assertFalse(Decide.LIC13(pts, params));
   }
 
+  /** Test that true is returned when a known good case is used. */
   @Test
   public void TestBothConditionsOk() {
     Parameters params =
@@ -108,6 +114,7 @@ public class TestLIC13 {
     Assert.assertTrue(Decide.LIC13(pts, params));
   }
 
+  /** Test that false is returned when a known example where only the first condition is met. */
   @Test
   public void TestFirstConditionsOk() {
     Parameters params =
@@ -125,6 +132,7 @@ public class TestLIC13 {
     Assert.assertFalse(Decide.LIC13(pts, params));
   }
 
+  /** Test that false is returned when a known example where only the second condition is met. */
   @Test
   public void TestSecondConditionsOk() {
     Parameters params =
@@ -142,6 +150,7 @@ public class TestLIC13 {
     Assert.assertFalse(Decide.LIC13(pts, params));
   }
 
+  /** Test that false is returned when a known example where no condition is met. */
   @Test
   public void TestNoConditionsOk() {
     Parameters params =

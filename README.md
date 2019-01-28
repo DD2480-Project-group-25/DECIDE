@@ -43,10 +43,19 @@ code builds and passes all tests.
 ## Authors
 
 * **Alzahraa Salman**
+  * Completed LIC 4,9 and 14 with corresponding tests
+  * Put together LICs for final decision together with Helena
 * **Helena Alinder**
+  * Completed LIC 0, 5 and 10 with corresponding tests
+  * Put together LICs for final decision together with Alzahraa
 * **Jesper Larsson**
+    * Completed LIC 3, 8 and 13 with corresponding tests
+    * Set up CI
 * **Marcus Granström**
+  * Completed LIC 2, 7 and 12 with corresponding tests
+  * Wrote this readme
 * **Veronica Hage**
+  * Completed LIC 1, 6 and 11 with corresponding tests
 
 See also the list of [contributors](https://github.com/DD2480-Project-group-25/DECIDE/contributors) who participated in this project.
 

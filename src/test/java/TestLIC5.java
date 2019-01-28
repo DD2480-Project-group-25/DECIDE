@@ -4,8 +4,8 @@ import org.junit.Test;
 public class TestLIC5 {
 
   /**
-   * Test that method finds the negative distance difference between point c and point b,
-   * when the c.X - b.X is calculated, and returns true
+   * Test that method finds the negative distance difference between point c and point b, when the
+   * c.X - b.X is calculated, and returns true
    */
   @Test
   public void testNegativeDifference() {
@@ -17,8 +17,8 @@ public class TestLIC5 {
   }
 
   /**
-   * Test that method find the positive distance difference between point b and point a,
-   * and point c and point b, and returns false
+   * Test that method find the positive distance difference between point b and point a, and point c
+   * and point b, and returns false
    */
   @Test
   public void testPositiveDifference() {
@@ -30,8 +30,7 @@ public class TestLIC5 {
   }
 
   /**
-   * Test that the method returns false when there is no difference between the points
-   * x-coordinates
+   * Test that the method returns false when there is no difference between the points x-coordinates
    */
   @Test
   public void testNoDifference() {
@@ -42,9 +41,7 @@ public class TestLIC5 {
     Assert.assertFalse(Decide.LIC5(pts));
   }
 
-  /**
-   * Test that method handles an empty point array correct and returns false
-   */
+  /** Test that method handles an empty point array correct and returns false */
   @Test
   public void testEmptyPointArray() {
     Point[] pts = {};

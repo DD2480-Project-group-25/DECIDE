@@ -289,8 +289,8 @@ public class Decide {
   }
 
   /**
-   * Checks if there exists three points, separated by A_PTS and B_PTS, respectively,
-   * such that they cannot fit inside a circle with radius RADIUS1.
+   * Checks if there exists three points, separated by A_PTS and B_PTS, respectively, such that they
+   * cannot fit inside a circle with radius RADIUS1.
    *
    * @param pts array of data points of type Point
    * @param params Parameter object acting as configuration

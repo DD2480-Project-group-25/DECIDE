@@ -60,6 +60,9 @@ code builds and passes all tests.
   * Completed LIC 1, 6 and 11 with corresponding tests
  
  *Note: due to some misconfiguration **Veronica's** commits shows up under different names in the project summary.*
+ 
+ *Note: The statistics show that some members have added/removed more lines of code than others. This is due to project setup
+ and auto-generated content, rather than unbalanced workload.*
 
 See also the list of [contributors](https://github.com/DD2480-Project-group-25/DECIDE/contributors) who participated in this project.
 
